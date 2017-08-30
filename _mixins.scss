@@ -1,0 +1,26 @@
+@mixin respond($media) {
+  @if $media==xs {
+    @media only screen and (max-width: $xs - 1px) { @content; }
+  }
+  @else if $media==gt-xs {
+    @media only screen and (min-width: $xs) { @content; }
+  }
+  @else if $media==sm {
+    @media only screen and (min-width: $xs) and (max-width: $sm - 1px) { @content; }
+  }
+  @else if $media==gt-sm {
+    @media only screen and (min-width: $sm) { @content; }
+  }
+  @else if $media==md {
+    @media only screen and (min-width: $sm) and (max-width: $md - 1px) { @content; }
+  }
+  @else if $media==gt-md {
+    @media only screen and (min-width: $md) { @content; }
+  }
+  @else if $media==lg {
+    @media only screen and (min-width: $md) and (max-width: $lg - 1px) { @content; }
+  }
+  @else if $media==gt-lg {
+    @media only screen and (min-width: $lg) { @content; }
+  }
+}

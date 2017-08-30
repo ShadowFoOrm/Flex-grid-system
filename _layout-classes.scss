@@ -1,0 +1,103 @@
+// Responsive Columns (xs sm md lg)
+$screen-size: xs, sm, md, lg;
+@each $screen in $screen-size {
+  @if $screen !=lg {
+    @include respond($screen) {
+      @for $i from 1 through 12 {
+        .col-#{$screen}-#{$i} {
+          max-width: $i/12*100%;
+        }
+      }
+    }
+  }
+  @else {
+    @include respond(gt-md) {
+      @for $i from 1 through 12 {
+        .col-#{$screen}-#{$i} {
+          max-width: $i/12*100%;
+        }
+      }
+    }
+  }
+}
+// Margins & Paddings (0, 6, 12, 16, 18, 24, 30);
+$sizes: t, r, b, l, h, v, 0;
+@each $size in $sizes {
+  @for $i from 5 through 0 {
+    @if $size != 0 {
+      .m#{$size}#{$i * 6} {
+        @if $size == t {
+          margin-top: $i *6px;
+        } @else if $size == r {
+          margin-right: $i * 6px;
+        } @else if $size == b {
+          margin-bottom: $i * 6px;
+        } @else if $size == l {
+          margin-left: $i * 6px;
+        } @else if $size == h {
+          margin-top: $i * 6px;
+          margin-bottom: $i * 6px;
+        } @else if $size == v {
+          margin-right: $i * 6px;
+          margin-left: $i * 6px;
+        }
+      }
+    } @else if $size == 0 {
+      .m#{$i * 6} { margin: $i * 6px; }
+      .p#{$i * 6} { padding: $i * 6px; }
+    }
+  }
+}
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+[class^='col'] {
+  padding: 0 12px;
+  width: 100%;
+}
+
+.flex { display: flex; }
+
+.flex-row {
+  @extend .flex;
+  flex-wrap: wrap;
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+.flex-reverse {
+  @extend .flex;
+  flex-direction: row-reverse;
+}
+
+.column { flex-direction: column; }
+.column-reverse { flex-direction: column-reverse; }
+
+.wrap { flex-wrap: wrap; }
+.no-wrap { flex-wrap: nowrap; }
+
+.jc-start { justify-content: flex-start; }
+.jc-end { justify-content: flex-end; }
+.jc-center { justify-content: center; }
+.jc-around { justify-content: space-around; }
+.jc-between { justify-content: space-between; }
+
+.ac-start { align-content: flex-start; }
+.ac-end { align-content: flex-end; }
+.ac-center { align-content: center; }
+.ac-around { align-content: space-around; }
+.ac-between { align-content: space-between; }
+
+.ai-start { align-items: flex-start; }
+.ai-end { align-items: flex-end; }
+.ai-center { align-items: center; }
+.ai-baseline { align-items: baseline; }
+.ai-stretch { align-items: stretch; }
+
+.as-start { align-self: flex-start; }
+.as-end { align-self: flex-end; }
+.as-center { align-self: center; }
+.as-baseline { align-self: baseline; }
+.as-stretch { align-self: stretch; }
